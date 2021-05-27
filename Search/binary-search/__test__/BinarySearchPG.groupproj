@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{986B1345-C4CD-4FC4-80CD-7D8B8BF9CE5D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="mainProject.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="BinarySearchTestProject.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mainProject">
+        <MSBuild Projects="mainProject.dproj"/>
+    </Target>
+    <Target Name="mainProject:Clean">
+        <MSBuild Projects="mainProject.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mainProject:Make">
+        <MSBuild Projects="mainProject.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BinarySearchTestProject">
+        <MSBuild Projects="BinarySearchTestProject.dproj"/>
+    </Target>
+    <Target Name="BinarySearchTestProject:Clean">
+        <MSBuild Projects="BinarySearchTestProject.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BinarySearchTestProject:Make">
+        <MSBuild Projects="BinarySearchTestProject.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mainProject;BinarySearchTestProject"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mainProject:Clean;BinarySearchTestProject:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mainProject:Make;BinarySearchTestProject:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
