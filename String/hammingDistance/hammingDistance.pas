@@ -23,11 +23,13 @@ begin
 
   var distance: integer := 0;
 
-  for I := 0 to Pred(a.Length) do
+  for I := 1 to a.Length do
   begin
     if (a[I] <> b[I]) then
       Inc(distance);
   end;
+
+  Result := distance;
 
 end;
 
